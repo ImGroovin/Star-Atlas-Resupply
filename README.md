@@ -21,7 +21,9 @@ module.exports = {score};
 The script is built as a TamperMonkey script. [TamperMonkey](https://www.tampermonkey.net/) is a userscript manager available for free as a browser extension.
 
 1. Install TamperMonkey
-2. Select the star-atlas-resupply.js file in this repo. View the file and click the "Raw" button to view its source.
+2. Select the star-atlas-resupply.user.js file in this repo. View the file and click the "Raw" button to view its source.
 3. Copy the source
 4. Open Tampermonkey in your browser and click the Add Script tab (icon with a plus symbol)
 5. Paste the source into the script window and click File > Save
+6. Browse to https://api.mainnet-beta.solana.com/
+7. Click the "Resupply All Ships" button
