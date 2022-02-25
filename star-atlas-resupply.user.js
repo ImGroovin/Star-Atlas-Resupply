@@ -97,19 +97,23 @@
 
         let shipStakingInfo = await BrowserScore.score.getAllFleetsForUserPublicKey(connection, userPublicKey, scoreProgId);
         for (let i = 0; i < shipStakingInfo.length; i++) {
-            const nowSec = new Date().getTime() / 1000;
+            const nowTS = new Date().getTime() / 1000;
 
             // Calculate the maximum amount of each resources necessary to refuel each ship
             // NOTE: The SCORE programs will not allow over-supply, so there is no risk of waste by using a larger quantity than necessary
             let shipInfo = await BrowserScore.score.getScoreVarsShipInfo(connection, scoreProgId, shipStakingInfo[i].shipMint)
-            let toolkitMaxReserve = shipStakingInfo[i].healthCurrentCapacity / (shipInfo.millisecondsToBurnOneToolkit / 1000)
-            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRepairInstruction, toolkitMaxReserve * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, toolTokenMint, toolTokenAcct));
-            let armsMaxReserve = shipStakingInfo[i].armsCurrentCapacity / (shipInfo.millisecondsToBurnOneArms / 1000)
-            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRearmInstruction, armsMaxReserve * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, ammoTokenMint, ammoTokenAcct));
-            let fuelMaxReserve = shipStakingInfo[i].fuelCurrentCapacity / (shipInfo.millisecondsToBurnOneFuel / 1000)
-            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRefuelInstruction, fuelMaxReserve * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, fuelTokenMint, fuelTokenAcct));
-            let foodMaxReserve = shipStakingInfo[i].foodCurrentCapacity / (shipInfo.millisecondsToBurnOneFood / 1000)
-            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRefeedInstruction, foodMaxReserve * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, foodTokenMint, foodTokenAcct));
+            let toolReserve = shipStakingInfo[i].healthCurrentCapacity / (shipInfo.millisecondsToBurnOneToolkit / 1000)
+            let toolSpent = (nowTS - shipStakingInfo[i].repairedAtTimestamp.toNumber()) / (shipInfo.millisecondsToBurnOneToolkit / 1000)
+            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRepairInstruction, (shipInfo.toolkitMaxReserve - (toolReserve - toolSpent)) * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, toolTokenMint, toolTokenAcct));
+            let armsReserve = shipStakingInfo[i].armsCurrentCapacity / (shipInfo.millisecondsToBurnOneArms / 1000)
+            let armsSpent = (nowTS - shipStakingInfo[i].armedAtTimestamp.toNumber()) / (shipInfo.millisecondsToBurnOneArms / 1000)
+            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRearmInstruction, (shipInfo.armsMaxReserve - (armsReserve - armsSpent)) * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, ammoTokenMint, ammoTokenAcct));
+            let fuelReserve = shipStakingInfo[i].fuelCurrentCapacity / (shipInfo.millisecondsToBurnOneFuel / 1000)
+            let fuelSpent = (nowTS - shipStakingInfo[i].fueledAtTimestamp.toNumber()) / (shipInfo.millisecondsToBurnOneFuel / 1000)
+            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRefuelInstruction, (shipInfo.fuelMaxReserve - (fuelReserve - fuelSpent)) * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, fuelTokenMint, fuelTokenAcct));
+            let foodReserve = shipStakingInfo[i].foodCurrentCapacity / (shipInfo.millisecondsToBurnOneFood / 1000)
+            let foodSpent = (nowTS - shipStakingInfo[i].fedAtTimestamp.toNumber()) / (shipInfo.millisecondsToBurnOneFood / 1000)
+            txInstructions.push(await getResupplyInstruction(BrowserScore.score.createRefeedInstruction, (shipInfo.foodMaxReserve - (foodReserve - foodSpent)) * shipStakingInfo[i].shipQuantityInEscrow, shipStakingInfo[i].shipMint, foodTokenMint, foodTokenAcct));
         }
         await sendTransactions(txInstructions);
     }
