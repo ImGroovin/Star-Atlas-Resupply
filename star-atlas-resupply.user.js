@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Efficiently resupply all Star Atlas ships
 // @author       Groove
-// @match        https://api.mainnet-beta.solana.com/
+// @match        https://play.staratlas.com/fleet
 // @require      https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js
 // @require      https://imgroovin.github.io/Star-Atlas-Resupply/staratlas-score-browserified.js
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+    const connection = new solanaWeb3.Connection('https://solana-api.projectserum.com');
     let userPublicKey = null;
 
     // Extracted from https://play.staratlas.com/fleet - __NEXT_DATA__.runtimeConfig.NEXT_PUBLIC_SCORE_PROGRAM_ID
@@ -117,10 +117,27 @@
         await sendTransactions(txInstructions);
     }
 
-    // Create a Resupply All Ships button
+    // Create a basic Resupply All Ships button
+    /*
     let resupplyAll = document.createElement ('div');
     resupplyAll.innerHTML = '<button id="browserResupplyAll">Resupply All Ships</button>';
     resupplyAll.setAttribute ('id', 'browserResupplyAllContainer');
     document.body.appendChild(resupplyAll);
     document.getElementById ("browserResupplyAll").addEventListener("click", ExecuteResupplyAll, false);
+    */
+
+    // Add a themed Resupply All Ships button to the SA Fleet page
+    var observer = new MutationObserver(waitForFleet);
+    function waitForFleet(mutations, observer){
+        if(document.getElementsByClassName('FleetHeaderstyles__Gradient-fBPges')[0]) {
+            observer.disconnect();
+            let resupplyAll = document.createElement ('div');
+            resupplyAll.innerHTML = '<button id="browserResupplyAll" class="Buttonstyles__Button-gslJED dcMTAj"><span class="Buttonstyles__Label-gJJuVP jXIreH" style="font-size: 14px;">Resupply All Ships</span></button>';
+            resupplyAll.setAttribute ('id', 'browserResupplyAllContainer');
+            let targetElem = document.getElementsByClassName('FleetHeaderstyles__Gradient-fBPges');
+            targetElem[0].appendChild(resupplyAll);
+            document.getElementById ("browserResupplyAll").addEventListener("click", ExecuteResupplyAll, false);
+        }
+    }
+    observer.observe(document, {childList: true, subtree: true});
 })();
