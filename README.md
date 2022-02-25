@@ -1,7 +1,7 @@
 ![Resupply Button](https://imgroovin.github.io/Star-Atlas-Resupply/resupply_all_ships.png "Resupply Button")
 
 # Star Atlas Resupply by Shadow's Legacy [SLY]
-This is a browser-based script to resupply Star Atlas ships with a single approval. This is accomplished by leveraging the solana wallet-adapter function [signAllTransactions](https://solana-labs.github.io/wallet-adapter/classes/_solana_wallet_adapter_base.BaseSignerWalletAdapter.html#signAllTransactions). In an effort to increase efficiency, this script will also pack two instructions into each transaction, reducing transaction fees.
+This is a browser-based script to resupply Star Atlas ships with a single approval. This is accomplished by leveraging the solana wallet-adapter function [signAllTransactions](https://solana-labs.github.io/wallet-adapter/classes/_solana_wallet_adapter_base.BaseSignerWalletAdapter.html#signAllTransactions). In an effort to increase efficiency, this script will also pack four instructions into each transaction, reducing transaction fees.
 
 ### SECURITY NOTICE
 Users are encouraged to build their own instance of a browser-compatible Star Atlas Factory - Score file. Doing so ensures that you are using trusted code. A pre-built file is provided for convenience. 
