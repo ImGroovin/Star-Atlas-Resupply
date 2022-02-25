@@ -27,5 +27,9 @@ The script is built as a TamperMonkey script. [TamperMonkey](https://www.tamperm
 3. Copy the source
 4. Open Tampermonkey in your browser and click the Add Script tab (icon with a plus symbol)
 5. Paste the source into the script window and click File > Save
-6. Browse to https://api.mainnet-beta.solana.com/
+6. Browse to https://play.staratlas.com/fleet
 7. Click the "Resupply All Ships" button
+
+### Credit
+[vlaslaptev](https://github.com/vlaslaptev) for the star_atlas_bot which provides an excellent example of how to interact with the Star Atlas Score module.
+Blulce81 for pointing out the proper Solana API endpoint.
