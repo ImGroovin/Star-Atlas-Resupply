@@ -15,7 +15,6 @@
     'use strict';
 
     const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
-    //const connection = new solanaWeb3.Connection(GM_xmlhttpRequest('https://api.mainnet-beta.solana.com/'));
     let userPublicKey = null;
 
     // Extracted from https://play.staratlas.com/fleet - __NEXT_DATA__.runtimeConfig.NEXT_PUBLIC_SCORE_PROGRAM_ID
