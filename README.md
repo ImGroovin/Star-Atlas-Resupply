@@ -7,7 +7,7 @@ Due to CORS restrictions on the https://play.staratlas.com/ site, this script ad
 Users are encouraged to build their own instance of a browser-compatible Star Atlas Factory - Score file. Doing so ensures that you are using trusted code. A pre-built file is provided for convenience. 
 
 ### Building your own browserified version
-This script uses a browserified verion of [Star Atlas Factory](https://github.com/staratlasmeta/factory). 
+This script uses a browserified version of [Star Atlas Factory](https://github.com/staratlasmeta/factory). 
 
 ```
 browserify sa-score.js --standalone BrowserScore -p esmify --exclude process -o staratlas-score-browserified.js
