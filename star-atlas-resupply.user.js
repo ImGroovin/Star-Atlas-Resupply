@@ -33,14 +33,14 @@
         let tx = null;
 
         // Solana transactions have an MTU size of 1280 bytes.
-        // We should be able to safely fit two instructions into each transaction.
+        // We should be able to safely fit four instructions into each transaction.
         for (let i = 0; i < txInstructions.length; i++) {
             if (tx == null) {
                 tx = new solanaWeb3.Transaction().add(txInstructions[i]);
             } else {
                 tx.add(txInstructions[i])
             }
-            if (tx.instructions.length > 1 || i == txInstructions.length-1) {
+            if (tx.instructions.length > 3 || i == txInstructions.length-1) {
                 tx.recentBlockhash = (await connection.getRecentBlockhash('finalized')).blockhash;
                 tx.feePayer = userPublicKey;
                 transactions.push(tx);
