@@ -31,5 +31,5 @@ The script is built as a TamperMonkey script. [TamperMonkey](https://www.tamperm
 7. Click the "Resupply All Ships" button
 
 ### Credit
-[vlaslaptev](https://github.com/vlaslaptev) for the star_atlas_bot which provides an excellent example of how to interact with the Star Atlas Score module.
-Blulce81 for pointing out the proper Solana API endpoint.
+* [vlaslaptev](https://github.com/vlaslaptev) for the star_atlas_bot which provides an excellent example of how to interact with the Star Atlas Score module.
+* Blulce81 for pointing out the proper Solana API endpoint.
