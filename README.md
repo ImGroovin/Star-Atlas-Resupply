@@ -1,6 +1,6 @@
 ![Resupply Button](https://imgroovin.github.io/Star-Atlas-Resupply/resupply_all_ships.png "Resupply Button")
 
-# Star Atlas Resupply by Shadow's Legacy [SLY]
+# Star Atlas Auto Resupply by Shadow's Legacy [SLY]
 This is a browser-based script to automatically resupply Star Atlas ships on a recurring basis (once per day for 7 days) with a single approval.
 
 The __single approval component__ is accomplished by leveraging the solana wallet-adapter function [signAllTransactions](https://solana-labs.github.io/wallet-adapter/classes/_solana_wallet_adapter_base.BaseSignerWalletAdapter.html#signAllTransactions). In an effort to increase efficiency, this script will also pack multiple instructions into each transaction, reducing transaction fees.
