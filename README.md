@@ -45,6 +45,8 @@ The script is built as a TamperMonkey script. [TamperMonkey](https://www.tamperm
 9. Click the "Resupply All Ships" button
 10. __Leave the browser window open (it can be minimized)__ - this is required since the script runs in the browser
 
+NOTE: The ship supplies displayed on the Fleet page will not reflect updated supplies while the script is running.
+
 ### Credit
 * [vlaslaptev](https://github.com/vlaslaptev) for the star_atlas_bot which provides an excellent example of how to interact with the Star Atlas Score module.
 * Blulce81 for pointing out the proper Solana API endpoint.
