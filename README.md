@@ -5,7 +5,7 @@ This is a browser-based script to automatically resupply Star Atlas ships on a r
 
 The __single approval component__ is accomplished by leveraging the solana wallet-adapter function [signAllTransactions](https://solana-labs.github.io/wallet-adapter/classes/_solana_wallet_adapter_base.BaseSignerWalletAdapter.html#signAllTransactions). In an effort to increase efficiency, this script will also pack multiple instructions into each transaction, reducing transaction fees.
 
-The __recurring component__ is accomplished by leveraging [Durable Transaction Nonce Accounts](https://docs.solana.com/implemented-proposals/durable-tx-nonces). These accounts store a nonce which can be used in place of a recent blockhash. They are intended for use in signing offline transactions. Here, those accounts are used to sign several "resupply" transaction ahead of time; allowing the user to sign all of the transactions at once.
+The __recurring component__ is accomplished by leveraging [Durable Transaction Nonce Accounts](https://docs.solana.com/implemented-proposals/durable-tx-nonces). These accounts store a nonce which can be used in place of a recent blockhash. They are intended for use in signing offline transactions. Here, those accounts are used to configure several "resupply" transaction ahead of time; allowing the user to sign all of the transactions at once.
 
 ### Durable Transaction Nonce Accounts
 Each account is required to be rent-exempt, so it requires a deposit of 0.00144768 SOL.
