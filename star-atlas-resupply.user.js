@@ -216,13 +216,17 @@
                             }));
                     }
                     tx.add(txInstructions[instructionIdx])
-                    if (tx.instructions.length >= maxInstructions || instructionIdx == txInstructions.length-1) {
+                    if (tx.instructions.length > maxInstructions || instructionIdx == txInstructions.length-1) {
                         tx.recentBlockhash = nonceAccount.nonce;
                         tx.feePayer = userPublicKey;
                         transactions.push(tx);
                         tx = null;
+                        instructionIdx++
                         break;
                     }
+                }
+                if (instructionIdx == txInstructions.length) {
+                    instructionIdx = 0;
                 }
             }
         }
