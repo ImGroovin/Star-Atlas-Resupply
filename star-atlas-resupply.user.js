@@ -20,7 +20,7 @@
     // Other RPC endpoints for testing
     // 'https://solana-api.projectserum.com'
     // 'https://ssc-dao.genesysgo.net'
-    const connection = new solanaWeb3.Connection('https://solana-api.syndica.io/access-token/PlxlrbctMxm5qsacltZqGtVhUcPMbTqqema0uKb3CGxNrxhLWCJXYIDYhhU9xljH/rpc');
+    const connection = new solanaWeb3.Connection('https://solana-api.syndica.io/access-token/WPoEqWQ2auQQY1zHRNGJyRBkvfOLqw58FqYucdYtmy8q9Z84MBWwqtfVf8jKhcFh/rpc');
 
     // Extracted from https://play.staratlas.com/fleet - __NEXT_DATA__.runtimeConfig.NEXT_PUBLIC_SCORE_PROGRAM_ID
     const scoreProgramId = new solanaWeb3.PublicKey('FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW');
